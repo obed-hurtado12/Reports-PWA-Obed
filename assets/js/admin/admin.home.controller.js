@@ -17,8 +17,11 @@ const getIncidences = async () => {
             <th scope="row">${index + 1}</th>
             <td>${incidence.person.name + ' ' + incidence.person.surname}</td>
             <td>${incidence.user.area.name}</td>
-            <td>${incidence.createdAt.split('T')[0] +' '+ incidence.createdAt.split('T')[1].split('.')[0] }</td>
-            <td>Acciones</td>
+            <td>${incidence.createdAt.split('T')[0] + ' ' + incidence.createdAt.split('T')[1].split('.')[0]}</td>
+            <td>
+              <button class="btn btn-success btn-sm" onclick="approveIncidence(${incidence.id})">Aprobar</button>
+              <button class="btn btn-danger btn-sm" onclick="rejectIncidence(${incidence.id})">Rechazar</button>
+            </td>
         </tr>
         `;
     }
@@ -35,6 +38,16 @@ const getIncidences = async () => {
   }
 };
 
+// Funciones para aprobar y rechazar incidencias
+const approveIncidence = async (incidenceId) => {
+  // Lógica para aprobar la incidencia (puedes hacer una solicitud al servidor aquí)
+  console.log(`Incidencia ${incidenceId} aprobada`);
+};
+
+const rejectIncidence = async (incidenceId) => {
+  // Lógica para rechazar la incidencia (puedes hacer una solicitud al servidor aquí)
+  console.log(`Incidencia ${incidenceId} rechazada`);
+};
 
 $(document).ready(function () {
   if (!fullname) fullname = localStorage.getItem('fullname');
@@ -42,5 +55,5 @@ $(document).ready(function () {
   $('#fullname').text(fullname);
   $('#fullname2').text(fullname);
   $('#role').text(role);
-  getIncidences()
+  getIncidences();
 });
